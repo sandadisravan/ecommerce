@@ -1,0 +1,32 @@
+<!-- <h3>{{productid}}</h3> -->
+<div class="container">
+    <div *ngIf="filteredData.id==1"><img src="assets/images/gaming1.png" ></div>
+    <div *ngIf="filteredData.id==2"><img src="assets/images/student.png" ></div>
+    <div *ngIf="filteredData.id==3"><img src="assets/images/shopping.png" ></div>
+<dl class="row details-box">
+<dt class="col-3">Name:</dt>
+<dd class="col-9 ">{{filteredData.name}}</dd>
+<dt class="col-3">Price:</dt>
+<dd class="col-9">{{filteredData.price}}</dd>
+<dt class="col-3">Description:</dt>
+<dd class="col-9">{{filteredData.description}}</dd>
+</dl>
+</div>
+<label class="form-label d-block">Quantity</label>
+<div class="input-group input-spinner w-25">
+    <button class="btn btn-icon btn-light" type="button" (click)="quantity2(quantity)" [disabled]="quantity<1"> 
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#999" viewBox="0 0 24 24">
+          <path d="M19 13H5v-2h14v2z"></path>
+        </svg>
+    </button>
+    <input class="form-control text-center inp-bt" placeholder="" [(ngModel)]="quantity">
+    <button class="btn btn-icon btn-light" type="button" (click)="quantity1(quantity)" [disabled]="quantity>10"> 
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#999" viewBox="0 0 24 24">
+          <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
+        </svg>
+    </button>
+  </div>
+  <br>
+  <div class="text-danger" *ngIf="mesg">{{mesg}}</div>
+  <br>
+<button class="btn  btn-primary" (click)="addtocart(filteredData)"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </button>

@@ -1,0 +1,23 @@
+<h1 class="main-title">Products</h1>
+<div fxLayout="row">
+    <div   *ngFor="let product of products" class="product-box">
+      <h3>
+        <div *ngIf="product.id==1"><img src="assets/images/gaming1.png" ></div>
+        <div *ngIf="product.id==2"><img src="assets/images/student.png" ></div>
+        <div *ngIf="product.id==3"><img src="assets/images/shopping.png" ></div>
+        
+      <br>
+        <a class="pd-name" [title]="product.name + ' details'" [routerLink]="['/products',product.id]">
+          {{ product.name }}
+        </a>
+      </h3>
+      <p *ngIf="product.description">
+        <b>Description:</b> {{ product.description}}
+        </p>
+        <button class="share" (click)="share()">Whastapp Share  &nbsp;<i class="fa fa-whatsapp"></i></button>
+         <br>
+         <br>
+         <button class="btn btn-primary notify" (click)="notify()">Notify me</button>
+          </div>
+        </div>
+          

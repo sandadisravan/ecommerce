@@ -1,0 +1,84 @@
+<!-- <div class="row">
+    <div   *ngFor="let product of items" class="product-box"> 
+        <div *ngIf="product.id==1"><img src="assets/images/gaming1.png" class="left"></div>
+        <div *ngIf="product.id==2"><img src="assets/images/student.png" class="left"></div>
+        <div *ngIf="product.id==3"><img src="assets/images/shopping.png" class="left"></div> 
+      <br>
+      <div class="row content">
+      <h3>
+        <a class="pd-name" [title]="product.name + ' details'">
+          {{ product.name }}
+        </a>
+      </h3>
+      <p *ngIf="product.description">
+        <b>Description:</b> {{ product.description}}
+        </p>
+        <p *ngIf="product.price">
+          <b>Price:</b> {{ product.price}}
+          </p>
+          <button class="btn btn-outline-danger remove" (click)="remove()"> Remove</button>
+      </div>
+        </div>
+    </div>
+    <br>
+    <br> -->
+    <h3 *ngIf="items.length <1" class="text-success">Cart is Empty! Shop Now by Navigating to My Store!</h3>
+    <div class="card">
+      <div class="content-body">
+        <h4 class="card-title mb-4">Your shopping cart</h4>
+        <article class="row gy-3 mb-4" *ngFor="let product of items" >
+          <div class="col-lg-5">
+            <figure class="itemside me-lg-5">
+              <div class="aside" *ngIf="product.id==1"><img src="assets/images/gaming1.png" class="img-sm img-thumbnail ed"></div>
+              <div class="aside" *ngIf="product.id==2"><img src="assets/images/student.png" class="img-sm img-thumbnail ed"></div>
+              <div class="aside" *ngIf="product.id==3"><img src="assets/images/shopping.png" class="img-sm img-thumbnail ed"></div>
+              
+            </figure>
+          </div>
+          <div class="col-lg-2 col-sm-4 col-6">
+
+            <div class="price-wrap lh-sm"> 
+              <figcaption class="info">
+                <a class="title" style="font-size: 20px;font-style:italic;text-decoration: none;" [title]="product.name + ' details'"> <b>{{ product.name }}</b></a>
+                <br>
+                <br>
+                <p class="text-success" *ngIf="product.description"><b>Description:</b> {{ product.description}}</p>
+              </figcaption>
+              <var class="price h6" *ngIf="product.price"><b>Price:</b> {{ product.price}}</var>  <br>
+            </div> <!-- price-wrap .// -->
+          </div>
+          <div class="col-lg col-sm-4">
+            <div class="float-lg-end">
+              <a href="#" class="btn btn-light"> <i class="fa fa-heart"></i></a> 
+              <button class="btn btn-light text-danger" (click)="remove(product)"> Remove</button>
+            </div>
+          </div>
+        </article> <!-- row.// -->
+  </div> <!-- card-body .// -->
+      </div>
+      <br>
+     
+      <form [formGroup]="checkout" (ngSubmit)="onSubmit(name.value)" *ngIf="items.length>0">
+        <h2 class="text-success">Shipping Details:</h2>
+        <label for="name">Name</label><br>
+        <div class="input-group mb-3 w-30">
+            <div class="input-group-prepend">
+            </div>
+            <input type="text" class="form-control ip"  aria-label="Name" #name formControlName="name">
+          </div>
+          <label for="name">Address</label><br>
+          <div class="input-group mb-3 w-30">
+            <div class="input-group-prepend">
+            </div>
+            <input type="text" class="form-control ip" aria-label="Address" formControlName="address">
+          </div>
+          <label for="shipping">Choose a Shipping:</label>
+  <div class="input-group mb-3">
+    <select class="form-select w-50 ip" name="shipping" aria-label="Default select example">
+        <option selected>Prices</option>
+
+        <option  *ngFor="let i of shipping" title={{i.type}}>{{i.price|currency:'USD'}}</option>
+      </select>
+  </div>
+ <button class="btn btn-success" type="submit" [disabled]="items.length==0">Purchase</button><br>
+      </form>
